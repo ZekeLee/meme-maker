@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/variable/pretendardvariable.css');
+
 *,
 *:before,
 *:after {
@@ -6,25 +8,100 @@
   box-sizing: border-box;
 }
 
+input,
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+input {
+  padding: 10px 0;
+  font-weight: 500;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+input[type='color'] {
+  padding: 0;
+  background-color: #fff;
+  border-radius: 0;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+button,
+label {
+  padding: 10px 0;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  background: #0075ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity linear 0.3s;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
 html,
 body {
   height: 100%;
+  line-height: 1;
 }
 
 body {
   display: flex;
+  gap: 20px;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+    'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    sans-serif;
+  background-color: gainsboro;
 }
 
 canvas {
   width: 800px;
   height: 800px;
-  border: 5px solid #000;
+  border: 2px solid #000;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.palette {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .color-option {
   width: 50px;
   height: 50px;
+  border: 4px solid #fff;
+  border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform ease-in-out 0.1s;
+}
+
+.color-option:hover {
+  transform: scale(1.2);
 }
