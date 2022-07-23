@@ -6,6 +6,9 @@ const colorOption = Array.from(document.getElementsByClassName('color-option'));
 const modeBtn = document.getElementById('modeBtn');
 const resetBtn = document.getElementById('resetBtn');
 const eraserBtn = document.getElementById('eraserBtn');
+const fileInput = document.getElementById('file');
+const textInput = document.getElementById('text');
+const saveBtn = document.getElementById('save');
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 800;
@@ -14,6 +17,7 @@ canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = 'round';
 
 let isPainting = false;
 let isFilling = false;
@@ -40,7 +44,6 @@ const stopPainting = () => {
 };
 
 const onLineWidthChange = (e) => {
-  console.log(e.target.value);
   ctx.lineWidth = e.target.value;
 };
 
@@ -73,14 +76,55 @@ const onCanvasClick = () => {
 };
 
 const onResetClick = () => {
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  if (window.confirm('Do you really want to reset it?')) {
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  } else {
+    return;
+  }
 };
 
 const onEraserClick = () => {
   ctx.strokeStyle = '#fff';
   isFilling = false;
   modeBtn.innerText = 'Fill';
+};
+
+const onFileChange = (e) => {
+  const file = e.target.files[0];
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.src = url;
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    fileInput.value = null;
+  };
+  console.log(url);
+};
+
+const onDoubleClick = (e) => {
+  const text = textInput.value;
+  if (text) {
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.font = '72px Pretendard';
+    ctx.fillText(text, e.offsetX, e.offsetY);
+    ctx.restore();
+  } else {
+    return;
+  }
+};
+
+const onSaveClick = () => {
+  const url = canvas.toDataURL();
+  const $a = document.createElement('a');
+  if (window.confirm('Do you want to save?')) {
+    $a.href = url;
+    $a.download = 'myDrawing.png';
+    $a.click();
+  } else {
+    return;
+  }
 };
 
 /*
@@ -91,6 +135,7 @@ canvas.addEventListener('mousedown', startPainting);
 canvas.addEventListener('mouseup', stopPainting);
 canvas.addEventListener('mouseleave', stopPainting);
 canvas.addEventListener('click', onCanvasClick);
+canvas.addEventListener('dblclick', onDoubleClick);
 
 lineWidth.addEventListener('change', onLineWidthChange);
 
@@ -103,3 +148,7 @@ modeBtn.addEventListener('click', onModeClick);
 resetBtn.addEventListener('click', onResetClick);
 
 eraserBtn.addEventListener('click', onEraserClick);
+
+fileInput.addEventListener('change', onFileChange);
+
+saveBtn.addEventListener('click', onSaveClick);
