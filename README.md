@@ -1,3 +1,5 @@
+# Vanilla JS로 그림 앱 만들기
+
 ## 📌 Canvas API
 
 - Context.`lineWidth = number`: 선 굵기를 설정한다.
@@ -16,3 +18,5 @@
 - canvas.`toDataURL()`: 현재 canvas에 있는 그림 데이터를 URL로 변환해준다.
 
 [https://dingunote.github.io/meme-maker/](https://dingunote.github.io/meme-maker/)
+
+> Reference : [https://nomadcoders.co/javascript-for-beginners-2/lobby](https://nomadcoders.co/javascript-for-beginners-2/lobby)
