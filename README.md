@@ -17,6 +17,6 @@
 - Context.`restore()`: 기존에 `save()`로 저장된 속성으로 돌아간다.
 - canvas.`toDataURL()`: 현재 canvas에 있는 그림 데이터를 URL로 변환해준다.
 
-[https://dingunote.github.io/meme-maker/](https://dingunote.github.io/meme-maker/)
+[https://zekelee.github.io/meme-maker/](https://zekelee.github.io/meme-maker/)
 
 > Reference : [https://nomadcoders.co/javascript-for-beginners-2/lobby](https://nomadcoders.co/javascript-for-beginners-2/lobby)
